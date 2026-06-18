@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}{{ item.title }} | NeuroMat{% endblock %}
+{% block content %}
+  <article class="post">
+    <h1>{{ item.title }}</h1>
+    <p class="meta">{{ cat_label(item.category) }} | {{ item.published_at.strftime('%b %d, %Y') }}</p>
+    {% if item.authors %}<p class="authors"><em>{{ item.authors }}</em></p>{% endif %}
+    {% if item.location %}<p><strong>Local:</strong> {{ item.location }}</p>{% endif %}
+    {% if item.media_embed %}<div class="media">{{ item.media_embed | safe }}</div>{% endif %}
+    <div class="body">{{ item.body | safe }}</div>
+    {% if item.external_url %}<p><a href="{{ item.external_url }}">Link / DOI</a></p>{% endif %}
+  </article>
+{% endblock %}

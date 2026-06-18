@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Team | NeuroMat{% endblock %}
+{% block content %}
+  <h1>Team</h1>
+  {% for group, members in groups.items() %}
+  <div class="team-group">
+    <h3>{{ group }}</h3>
+    <ul>
+      {% for m in members %}
+      <li>&bull; {{ m.name }}{% if m.affiliation %} - {{ m.affiliation }}{% endif %}{% if m.status %} ("{{ m.status }}"){% endif %}</li>
+      {% endfor %}
+    </ul>
+  </div>
+  {% endfor %}
+{% endblock %}

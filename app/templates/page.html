@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}{{ pg.title }} | NeuroMat{% endblock %}
+{% block content %}
+  <h1>{{ pg.title }}</h1>
+  <div class="body">{{ pg.body | safe }}</div>
+{% endblock %}

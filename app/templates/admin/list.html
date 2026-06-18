@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="admin-wrap">
+    <h1>Conteudos {% if category %}- {{ CATEGORIES[category] }}{% endif %}</h1>
+    <p><a class="btn" href="{{ url_for('admin.edit_content') }}">+ Novo</a></p>
+    <table>
+      <tr><th>Titulo</th><th>Categoria</th><th>Data</th><th>Publicado</th><th></th></tr>
+      {% for it in items %}
+      <tr>
+        <td>{{ it.title }}</td><td>{{ it.category }}</td>
+        <td>{{ it.published_at }}</td>
+        <td>{{ "Sim" if it.published else "Nao" }}</td>
+        <td><a href="{{ url_for('admin.edit_content', item_id=it.id) }}">editar</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

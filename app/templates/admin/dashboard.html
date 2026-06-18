@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="admin-wrap">
+    <h1>Painel</h1>
+    <p><a class="btn" href="{{ url_for('admin.edit_content') }}">+ Novo conteudo</a>
+       &nbsp; <a href="{{ url_for('admin.list_content') }}">Ver todos</a>
+       &nbsp; <a href="{{ url_for('auth.logout') }}">Sair</a></p>
+    <div class="cards">
+      {% for cat, n in counts.items() %}
+      <div class="card"><div class="n">{{ n }}</div>
+        <a href="{{ url_for('admin.list_content', category=cat) }}">{{ CATEGORIES[cat] }}</a></div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

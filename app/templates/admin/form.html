@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="admin-wrap">
+    <h1>{{ "Editar" if item.id else "Novo" }} conteudo</h1>
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% for cat, m in msgs %}<div class="flash {{ cat }}">{{ m }}</div>{% endfor %}
+    {% endwith %}
+    <form method="post">
+      <h3>Portugues (PT-BR)</h3>
+      <label>Titulo (PT)</label><input type="text" name="title_pt" value="{{ item.title_pt or '' }}">
+      <label>Resumo (PT)</label><textarea name="summary_pt">{{ item.summary_pt or '' }}</textarea>
+      <label>Corpo (PT, HTML)</label><textarea name="body_pt">{{ item.body_pt or '' }}</textarea>
+      <h3>English (EN)</h3>
+      <label>Title (EN)</label><input type="text" name="title_en" value="{{ item.title_en or '' }}">
+      <label>Summary (EN)</label><textarea name="summary_en">{{ item.summary_en or '' }}</textarea>
+      <label>Body (EN, HTML)</label><textarea name="body_en">{{ item.body_en or '' }}</textarea>
+      <h3>Comum aos dois idiomas</h3>
+      <label>Slug (opcional)</label><input type="text" name="slug" value="{{ item.slug or '' }}">
+      <label>Categoria</label>
+      <select name="category">
+        {% for cat, labels in CATEGORIES.items() %}
+        <option value="{{ cat }}" {{ 'selected' if item.category==cat }}>{{ labels[lang] }}</option>
+        {% endfor %}
+      </select>
+      <label>Autores</label><input type="text" name="authors" value="{{ item.authors or '' }}">
+      <label>Local (events)</label><input type="text" name="location" value="{{ item.location or '' }}">
+      <label>Embed de midia</label><textarea name="media_embed">{{ item.media_embed or '' }}</textarea>
+      <label>Link externo / DOI</label><input type="text" name="external_url" value="{{ item.external_url or '' }}">
+      <label><input type="checkbox" name="published" {{ 'checked' if item.published }}> Publicado</label>
+      <p><button class="btn" type="submit">Salvar</button></p>
+    </form>
+  </div>
+{% endblock %}

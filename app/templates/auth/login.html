@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="admin-wrap" style="max-width:420px">
+    <h1>Login</h1>
+    {% with msgs = get_flashed_messages(with_categories=true) %}
+      {% for cat, m in msgs %}<div class="flash {{ cat }}">{{ m }}</div>{% endfor %}
+    {% endwith %}
+    <form method="post">
+      <label>E-mail</label><input type="text" name="email">
+      <label>Senha</label><input type="password" name="password">
+      <p><button class="btn" type="submit">Entrar</button></p>
+    </form>
+  </div>
+{% endblock %}

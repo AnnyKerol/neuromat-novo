@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="{{ lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}NeuroMat{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="{{ url_for('public.index') }}">NeuroMat</a>
+    <span class="tagline">Research, Innovation and Dissemination Center for Neuromathematics</span>
+    <form class="search" action="{{ url_for('public.index') }}">
+      <input type="text" name="q" placeholder="{{ t('search') }}"><button type="submit">&#9906;</button>
+    </form>
+    <div class="lang-switch">
+      <a href="?lang=pt" {% if lang=='pt' %}class="active"{% endif %}>PT</a> |
+      <a href="?lang=en" {% if lang=='en' %}class="active"{% endif %}>EN</a>
+    </div>
+  </header>
+  <nav class="main-nav">
+    <ul>
+      <li><a href="#">{{ t('about') }}</a>
+        <ul>
+          <li><a href="{{ url_for('public.page', slug='who-we-are') }}">{{ t('who_we_are') }}</a></li>
+          <li><a href="{{ url_for('public.page', slug='the-neuromat-project') }}">{{ t('the_project') }}</a></li>
+          <li><a href="{{ url_for('public.team') }}">{{ t('team') }}</a></li>
+          <li><a href="{{ url_for('public.page', slug='contact') }}">{{ t('contact') }}</a></li>
+        </ul></li>
+      <li><a href="#">{{ t('research') }}</a>
+        <ul>
+          <li><a href="{{ url_for('public.page', slug='scientific-project') }}">{{ t('scientific_project') }}</a></li>
+          <li><a href="{{ url_for('public.category', category='publications') }}">{{ t('publications') }}</a></li>
+          <li><a href="{{ url_for('public.category', category='lectures') }}">{{ t('lectures') }}</a></li>
+        </ul></li>
+      <li><a href="#">{{ t('dissemination') }}</a>
+        <ul>
+          <li><a href="{{ url_for('public.category', category='news') }}">{{ t('news') }}</a></li>
+          <li><a href="{{ url_for('public.category', category='videos') }}">{{ t('videos') }}</a></li>
+          <li><a href="{{ url_for('public.category', category='radiocast') }}">{{ t('radio') }}</a></li>
+        </ul></li>
+      <li><a href="{{ url_for('public.category', category='events') }}">{{ t('events') }}</a></li>
+      <li><a href="{{ url_for('public.category', category='opportunities') }}">{{ t('opportunities') }}</a></li>
+    </ul>
+  </nav>
+  <div class="banner"><span>NeuroMat</span></div>
+  <main class="layout">
+    <section class="content">{% block content %}{% endblock %}</section>
+    {% include "_sidebar.html" %}
+  </main>
+  <footer class="site-footer">
+    <div class="support"><span>{{ t('supported_by') }}</span><span>{{ t('hosted_by') }}</span></div>
+    <div class="cols">
+      <div><h3>{{ t('related_projects') }}</h3>ABRACO &middot; AMPARO &middot; Jogo do Goleiro &middot; NUMEC</div>
+      <div><h3>{{ t('follow_us') }}</h3>Facebook &middot; Youtube &middot; Github</div>
+      <div><h3>{{ t('contact') }}</h3>Matao St., 1010 - Sao Paulo - SP<br>+55 11 3091-1717</div>
+    </div>
+    <p class="license">Creative Commons Attribution 4.0</p>
+  </footer>
+</body>
+</html>
